@@ -21,6 +21,9 @@ public class User {
     private String username;
     private String email;
     private String password;
+    private String fullName;
+    private String url;
+    private String extra;
     @ManyToMany
     @JoinTable(
             name = "users_roles",

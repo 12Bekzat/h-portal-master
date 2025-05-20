@@ -1,12 +1,16 @@
-﻿package com.example.demo.Controller;
+package com.example.demo.Controller;
 
 import com.example.demo.DTO.DocumentRequestCreateDto;
 import com.example.demo.DTO.DocumentRequestDto;
 import com.example.demo.Services.DocumentRequestService;
+import com.example.demo.Services.EmailService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +24,7 @@ public class DocumentRequestController {
 
     // Создание новой заявки на документ
     @PostMapping("/request")
-    public ResponseEntity<DocumentRequestDto> createDocumentRequest(@RequestBody DocumentRequestCreateDto dto) {
+    public ResponseEntity<DocumentRequestDto> createDocumentRequest(@RequestBody DocumentRequestCreateDto dto) throws JsonProcessingException {
         DocumentRequestDto created = documentRequestService.createRequest(dto);
         return ResponseEntity.ok(created);
     }
@@ -40,7 +44,7 @@ public class DocumentRequestController {
     }
 
     // Генерация PDF-документа
-    @GetMapping("/{id}/generate")
+    @PostMapping("/{id}/generate")
     public ResponseEntity<byte[]> generateDocument(@PathVariable Long id) {
         byte[] pdf = documentRequestService.generatePdf(id);
         return ResponseEntity.ok()
@@ -50,8 +54,14 @@ public class DocumentRequestController {
     }
 
     // Получить список заявок пользователя или всех (если admin)
-    @GetMapping
-    public ResponseEntity<List<DocumentRequestDto>> getAll(@RequestParam(required = false) Long userId) {
-        return ResponseEntity.ok(documentRequestService.getAll(userId));
+    @PostMapping("/getAll")
+    public ResponseEntity<List<DocumentRequestDto>> getAll() {
+        return ResponseEntity.ok(documentRequestService.getAll(null));
+    }
+
+    @GetMapping("/getPaged/{id}")
+    public ResponseEntity<List<DocumentRequestDto>> getById(@PathVariable Long id) {
+        List<DocumentRequestDto> all = documentRequestService.getAll(id);
+        return ResponseEntity.ok(all);
     }
 }

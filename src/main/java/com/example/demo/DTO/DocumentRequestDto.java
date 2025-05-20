@@ -1,4 +1,4 @@
-﻿package com.example.demo.DTO;
+package com.example.demo.DTO;
 
 import com.example.demo.Models.DocumentStatus;
 import lombok.Data;
@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 public class DocumentRequestDto {
     private Long id;
     private String templateName;
+    private String requesterFullName;
     private DocumentStatus status;
     private LocalDateTime createdAt;
     private LocalDateTime approvedAt;

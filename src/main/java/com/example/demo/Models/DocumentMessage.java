@@ -1,4 +1,4 @@
-﻿package com.example.demo.Models;
+package com.example.demo.Models;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -17,6 +17,9 @@ public class DocumentMessage {
     @ManyToOne
     @JoinColumn(name = "sender_id")
     private User sender;
+    @ManyToOne
+    @JoinColumn(name = "receiver_id")
+    private User receiver;
     private String content;
     private LocalDateTime sentAt;
 }

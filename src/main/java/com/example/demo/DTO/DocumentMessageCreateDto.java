@@ -1,4 +1,4 @@
-﻿package com.example.demo.DTO;
+package com.example.demo.DTO;
 
 import lombok.Data;
 
@@ -6,6 +6,7 @@ import lombok.Data;
 public class DocumentMessageCreateDto {
     private Long documentId;
     private Long senderId;
+    private Long receiverId;
     private String content;
 }
 

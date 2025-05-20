@@ -1,9 +1,6 @@
-﻿package com.example.demo.Models;
+package com.example.demo.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -15,5 +12,8 @@ public class DocumentTemplate {
     private String name; // Название шаблона, например "Справка с места учёбы"
     private String description;
     private boolean requiresApproval;
+    @Lob
+    @Basic(fetch = FetchType.EAGER)
+    @Column(name = "content_template")
     private String contentTemplate;
 }

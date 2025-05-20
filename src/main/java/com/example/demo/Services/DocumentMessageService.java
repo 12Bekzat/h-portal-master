@@ -1,4 +1,4 @@
-﻿package com.example.demo.Services;
+package com.example.demo.Services;
 
 import com.example.demo.DTO.DocumentMessageCreateDto;
 import com.example.demo.DTO.DocumentMessageDto;
@@ -43,6 +43,13 @@ public class DocumentMessageService {
     public List<DocumentMessageDto> getMessages(Long documentId) {
         List<DocumentMessage> messages = messageRepository.findByDocumentIdOrderBySentAtAsc(documentId);
         return messages.stream().map(this::toDto).toList();
+    }
+
+    public List<DocumentMessageDto> getMessages(Long userId, Long senderId) {
+        List<DocumentMessage> messages = messageRepository.findAll();
+        return messages.stream()
+                .filter(message -> message.getReceiver().getId().equals(userId) && message.getReceiver().getId().equals(senderId))
+                .map(this::toDto).toList();
     }
 
     private DocumentMessageDto toDto(DocumentMessage message) {
