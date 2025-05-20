@@ -26,10 +26,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     @Autowired
-    private final UserService userService;
+    private UserService userService;
 
     @Autowired
-    private final JwtRequestFilter jwtRequestFilter;
+    private JwtRequestFilter jwtRequestFilter;
 
     @Bean
     public UserDetailsService userDetailsService() {

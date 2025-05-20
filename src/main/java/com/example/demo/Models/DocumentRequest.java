@@ -30,4 +30,92 @@ public class DocumentRequest {
     private String filledContent; // с подставленными данными
     private String extra;
     private boolean hasSignature;
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
+    }
+
+    public User getRequester() {
+        return requester;
+    }
+
+    public void setRequester(User requester) {
+        this.requester = requester;
+    }
+
+    public DocumentTemplate getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(DocumentTemplate template) {
+        this.template = template;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public DocumentStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(DocumentStatus status) {
+        this.status = status;
+    }
+
+    public String getRejectionReason() {
+        return rejectionReason;
+    }
+
+    public void setRejectionReason(String rejectionReason) {
+        this.rejectionReason = rejectionReason;
+    }
+
+    public User getApprovedBy() {
+        return approvedBy;
+    }
+
+    public void setApprovedBy(User approvedBy) {
+        this.approvedBy = approvedBy;
+    }
+
+    public LocalDateTime getApprovedAt() {
+        return approvedAt;
+    }
+
+    public void setApprovedAt(LocalDateTime approvedAt) {
+        this.approvedAt = approvedAt;
+    }
+
+    public String getFilledContent() {
+        return filledContent;
+    }
+
+    public void setFilledContent(String filledContent) {
+        this.filledContent = filledContent;
+    }
+
+    public String getExtra() {
+        return extra;
+    }
+
+    public void setExtra(String extra) {
+        this.extra = extra;
+    }
+
+    public boolean isHasSignature() {
+        return hasSignature;
+    }
+
+    public void setHasSignature(boolean hasSignature) {
+        this.hasSignature = hasSignature;
+    }
 }

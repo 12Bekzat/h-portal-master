@@ -6,6 +6,7 @@ import com.example.demo.Models.User;
 import com.example.demo.Repository.IMessageTextRepo;
 import com.example.demo.Repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,8 +17,10 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class ChatService {
-    private final IMessageTextRepo messageTextRepo;
-    private final IUserRepository userRepo;
+    @Autowired
+    private IMessageTextRepo messageTextRepo;
+    @Autowired
+    private IUserRepository userRepo;
 
     public List<MessageText> getMessages(Long receiverId, Long senderId) {
         List<MessageText> all = messageTextRepo.findAll();

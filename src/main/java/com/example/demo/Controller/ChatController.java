@@ -8,6 +8,7 @@ import com.example.demo.Models.MessageText;
 import com.example.demo.Services.ChatService;
 import com.example.demo.Services.DocumentMessageService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,8 +19,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ChatController {
 
-    private final DocumentMessageService messageService;
-    private final ChatService chatService;
+    @Autowired
+    private DocumentMessageService messageService;
+    @Autowired
+    private ChatService chatService;
 
     // Отправить сообщение по документу
     @PostMapping("/send")

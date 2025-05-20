@@ -10,6 +10,7 @@ import com.example.demo.Repository.IDocRequestRepo;
 import com.example.demo.Repository.IUserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -19,9 +20,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DocumentMessageService {
 
-    private final IDocMessageRepo messageRepository;
-    private final IUserRepository userRepository;
-    private final IDocRequestRepo requestRepository;
+    @Autowired
+    private IDocMessageRepo messageRepository;
+    @Autowired
+    private IUserRepository userRepository;
+    @Autowired
+    private IDocRequestRepo requestRepository;
 
     public DocumentMessageDto sendMessage(DocumentMessageCreateDto dto) {
         User sender = userRepository.findById(dto.getSenderId())

@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,11 +29,16 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class DocumentRequestService {
 
-    private final IDocRequestRepo requestRepository;
-    private final IDocumentTemplateRepository templateRepository;
-    private final IUserRepository userRepository;
-    private final ISignatureRepo signatureRepository;
-    private final EmailService emailService;
+    @Autowired
+    private IDocRequestRepo requestRepository;
+    @Autowired
+    private IDocumentTemplateRepository templateRepository;
+    @Autowired
+    private IUserRepository userRepository;
+    @Autowired
+    private ISignatureRepo signatureRepository;
+    @Autowired
+    private EmailService emailService;
 
     public DocumentRequestDto createRequest(DocumentRequestCreateDto dto) throws JsonProcessingException {
         User user = userRepository.findById(dto.getRequesterId())

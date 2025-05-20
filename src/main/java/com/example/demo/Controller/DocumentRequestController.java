@@ -20,7 +20,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DocumentRequestController {
 
-    private final DocumentRequestService documentRequestService;
+    @Autowired
+    private DocumentRequestService documentRequestService;
 
     // Создание новой заявки на документ
     @PostMapping("/request")
